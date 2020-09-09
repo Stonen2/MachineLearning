@@ -379,6 +379,7 @@ class DataProcessor:
                     if i == len(Bins)-1: 
                         #Set the value to be the last bin 
                         df.at[row,df.columns[col]] = i +1 
+                        print("Value " +str( value) + " binned to value " + str(i+1), end="\r", flush=True)
                         #Break out 
                         break 
                     #Otherwise if the value is less than the value stored to be assigned a given bin 
