@@ -386,8 +386,7 @@ class DataProcessor:
                         #Set the row to be that bin value 
                         df.at[row,df.columns[col]] = i + 1
                         #Break 
-                        if row % 10 == 0:
-                            print("Value " +str( value) + " binned to value " + str(i+1), end="\r", flush=True)
+                        print("Value " +str( value) + " binned to value " + str(i+1), end="\r", flush=True)
                         break 
             print("Value ", value, " binned to value ", i+1)
             #Return the new changed dataframe 
@@ -550,33 +549,33 @@ if __name__ == '__main__':
     df3 = Cancer.StartProcess(df3)
     df4 = Soybean.StartProcess(df4)
     print("Printing processed data to Files...")
-    df.to_csv('Demo/PreProcessedVoting' + '.csv')
-    df1.to_csv('Demo/PreProcessediris' + '.csv')
-    df2.to_csv('Demo/PreProcessedGlass' +  '.csv')
-    df3.to_csv('Demo/PreProcessedCancer'+ '.csv')
-    df4.to_csv('Demo/PreProcessedSoybean'+ '.csv')
+    df.to_csv('PreProcessedVoting' + '.csv')
+    df1.to_csv('PreProcessedIris' + '.csv')
+    df2.to_csv('PreProcessedGlass' +  '.csv')
+    df3.to_csv('PreProcessedCancer'+ '.csv')
+    df4.to_csv('PreProcessedSoybean'+ '.csv')
 
     Ta = TrainingAlgorithm.TrainingAlgorithm() 
     print("Starting Noise")
     df = Ta.ShuffleData(df)
-    print("First dataset Noisey")
+    print("vote dataset Noisey")
     df1 = Ta.ShuffleData(df1)
-    print("Second Dataset Noisey")
+    print("Iris Dataset Noisey")
     df2 = Ta.ShuffleData(df2)
-    print("Third Dataset Noisey")
+    print("glass Dataset Noisey")
     df3 = Ta.ShuffleData(df3)
-    print("Fourth dataset Noisey")
+    print("cancer dataset Noisey")
     df4 = Ta.ShuffleData(df4)
-    print("Fifth Dataset Noisey")
+    print("soy Dataset Noisey")
     print("\n")
 
 
     print("Printing Noisey Data to Files...")
-    df.to_csv('Demo\PreProcessedVoting' +'_Noise'+ '.csv')
-    df1.to_csv('Demo\PreProcessediris' + '_Noise'+ '.csv')
-    df2.to_csv('Demo\PreProcessedGlass' + '_Noise' +  '.csv')
-    df3.to_csv('Demo\PreProcessedCancer'  + '_Noise'+ '.csv')
-    df4.to_csv('Demo\PreProcessedSoybean' + '_Noise'+ '.csv')
+    df.to_csv('PreProcessedVoting' +'_Noise'+ '.csv', index=False, index_label=False)
+    df1.to_csv('PreProcessediris' + '_Noise'+ '.csv', index=False, index_label=False)
+    df2.to_csv('PreProcessedGlass' + '_Noise' +  '.csv', index=False, index_label=False)
+    df3.to_csv('PreProcessedCancer'  + '_Noise'+ '.csv', index=False, index_label=False)
+    df4.to_csv('PreProcessedSoybean' + '_Noise'+ '.csv', index=False, index_label=False)
     print("Processing is complete ")
     print("File creation is complete ")
 
