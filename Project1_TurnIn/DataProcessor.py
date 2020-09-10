@@ -577,7 +577,7 @@ if __name__ == '__main__':
 
     print("Printing Noisey Data to Files...")
     dfs.to_csv('PreProcessedVoting' +'_Noise'+ '.csv', index=False, index_label=False)
-    dfs1.to_csv('PreProcessediris' + '_Noise'+ '.csv', index=False, index_label=False)
+    dfs1.to_csv('PreProcessedIris' + '_Noise'+ '.csv', index=False, index_label=False)
     dfs2.to_csv('PreProcessedGlass' + '_Noise' +  '.csv', index=False, index_label=False)
     dfs3.to_csv('PreProcessedCancer'  + '_Noise'+ '.csv', index=False, index_label=False)
     dfs4.to_csv('PreProcessedSoybean' + '_Noise'+ '.csv', index=False, index_label=False)
