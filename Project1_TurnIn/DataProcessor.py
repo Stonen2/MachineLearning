@@ -248,6 +248,7 @@ class DataProcessor:
             df = df.drop(df.index[i])
         #Clear out all of the data in the set as to not try and drop these values again 
         self.MissingRowIndexList = set() 
+        df.reset_index(drop=True, inplace=True)
         #Return the dataframe 
         return df
 
@@ -547,7 +548,9 @@ if __name__ == '__main__':
     df = Vote.StartProcess(df)
     df1 = iris.StartProcess(df1)
     df2 = Glass.StartProcess(df2)
+    print(" cancer dataframe pre processing: ", '\n', df3.head)
     df3 = Cancer.StartProcess(df3)
+    print(" cancer dataframe post processing: ", '\n', df3.head)
     df4 = Soybean.StartProcess(df4)
     print("Printing processed data to Files...")
     df.to_csv('PreProcessedVoting' + '.csv', index=False, index_label=False)
@@ -558,25 +561,26 @@ if __name__ == '__main__':
 
     Ta = TrainingAlgorithm.TrainingAlgorithm() 
     print("Starting Noise")
-    df = Ta.ShuffleData(df)
+    dfs = Ta.ShuffleData(copy.deepcopy(df))
     print("vote dataset Noisey")
-    df1 = Ta.ShuffleData(df1)
+    dfs1 = Ta.ShuffleData(copy.deepcopy(df1))
     print("Iris Dataset Noisey")
-    df2 = Ta.ShuffleData(df2)
+    dfs2 = Ta.ShuffleData(copy.deepcopy(df2))
     print("glass Dataset Noisey")
-    df3 = Ta.ShuffleData(df3)
+    dfs3 = Ta.ShuffleData(copy.deepcopy(df3))
+    print(" cancer dataframe post shuffle processing: ", '\n', dfs3.head)
     print("cancer dataset Noisey")
-    df4 = Ta.ShuffleData(df4)
+    dfs4 = Ta.ShuffleData(copy.deepcopy(df4))
     print("soy Dataset Noisey")
     print("\n")
 
 
     print("Printing Noisey Data to Files...")
-    df.to_csv('PreProcessedVoting' +'_Noise'+ '.csv', index=False, index_label=False)
-    df1.to_csv('PreProcessediris' + '_Noise'+ '.csv', index=False, index_label=False)
-    df2.to_csv('PreProcessedGlass' + '_Noise' +  '.csv', index=False, index_label=False)
-    df3.to_csv('PreProcessedCancer'  + '_Noise'+ '.csv', index=False, index_label=False)
-    df4.to_csv('PreProcessedSoybean' + '_Noise'+ '.csv', index=False, index_label=False)
+    dfs.to_csv('PreProcessedVoting' +'_Noise'+ '.csv', index=False, index_label=False)
+    dfs1.to_csv('PreProcessediris' + '_Noise'+ '.csv', index=False, index_label=False)
+    dfs2.to_csv('PreProcessedGlass' + '_Noise' +  '.csv', index=False, index_label=False)
+    dfs3.to_csv('PreProcessedCancer'  + '_Noise'+ '.csv', index=False, index_label=False)
+    dfs4.to_csv('PreProcessedSoybean' + '_Noise'+ '.csv', index=False, index_label=False)
     print("Processing is complete ")
     print("File creation is complete ")
 

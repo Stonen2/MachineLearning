@@ -19,8 +19,9 @@ class TrainingAlgorithm:
     #Returns: List of Dataframes
     #Function: This function takes in adataframe and breaks the dataframe down into multiple dataframes that are returned Goal of this is to separate testing and training datasets
     def ShuffleData(self, df: pd.DataFrame) ->pd.DataFrame: 
-        #Get a deep copy of the dataframe 
+        #Get a deep copy of the dataframe
         df1 = copy.deepcopy(df)
+        # print(df.head, '\n', df1.head)
         #Calculate the number of records to be sampled for testing 
         TestSize = int((len(df.columns)-1) * .1)
         #if the test size is 0 
