@@ -77,7 +77,7 @@ def train(trainingAlgorithm, trainingData: pd.DataFrame) -> (dict, dict, dict):
    
     print("The following is the calculated F matrix ")
     print("\n")
-    print(F)
+    pprint.pprint(F)
     print("\n")
    
     #Return the dictionary of stats 
@@ -194,7 +194,7 @@ def main():
         #Write the data set, the trial number and statistics of a trial to be printed to a file 
         WriteToAFile(datasetName, AvgStats,Trial)
     finalDataSummary.to_csv("ExperimentalSummary.csv")
-    print("Program Finish")
+    print("Program Finish: \n", finalDataSummary)
 
 #Call the main function
 main() 
