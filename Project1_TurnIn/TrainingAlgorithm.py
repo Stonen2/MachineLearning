@@ -199,8 +199,7 @@ class TrainingAlgorithm:
                     fMatrix[ClassValueI][Attribute][AttributeValue] = (
                         (Value/(n[ClassValueI] + (len(df.columns)-1)))
                     )
-                    print("Calculated probability for class")
-                    print(fMatrix[ClassValueI][Attribute][AttributeValue])
+                    print("Calculated probability for class: ", ClassValueI, "Attribute: ", Attribute, "Value: ", Value, ": ", fMatrix[ClassValueI][Attribute][AttributeValue])
                     
         # return the complete "past feature value probability matrix"
         return fMatrix

@@ -380,7 +380,7 @@ class DataProcessor:
                     if i == len(Bins)-1: 
                         #Set the value to be the last bin 
                         df.at[row,df.columns[col]] = i +1 
-                        print("Value " +str( value) + " binned to value " + str(i+1), end="\r", flush=True)
+                        print("Value " +str( value) + " binned to value " + str(i+1))
                         #Break out 
                         break 
                     #Otherwise if the value is less than the value stored to be assigned a given bin 
@@ -388,7 +388,7 @@ class DataProcessor:
                         #Set the row to be that bin value 
                         df.at[row,df.columns[col]] = i + 1
                         #Break 
-                        print("Value " +str( value) + " binned to value " + str(i+1), end="\r", flush=True)
+                        print("Value " +str( value) + " binned to value " + str(i+1))
                         break 
             print("Value ", value, " binned to value ", i+1)
             #Return the new changed dataframe 
@@ -548,9 +548,7 @@ if __name__ == '__main__':
     df = Vote.StartProcess(df)
     df1 = iris.StartProcess(df1)
     df2 = Glass.StartProcess(df2)
-    print(" cancer dataframe pre processing: ", '\n', df3.head)
     df3 = Cancer.StartProcess(df3)
-    print(" cancer dataframe post processing: ", '\n', df3.head)
     df4 = Soybean.StartProcess(df4)
     print("Printing processed data to Files...")
     df.to_csv('PreProcessedVoting' + '.csv', index=False, index_label=False)
@@ -568,7 +566,6 @@ if __name__ == '__main__':
     dfs2 = Ta.ShuffleData(copy.deepcopy(df2))
     print("glass Dataset Noisey")
     dfs3 = Ta.ShuffleData(copy.deepcopy(df3))
-    print(" cancer dataframe post shuffle processing: ", '\n', dfs3.head)
     print("cancer dataset Noisey")
     dfs4 = Ta.ShuffleData(copy.deepcopy(df4))
     print("soy Dataset Noisey")
