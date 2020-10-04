@@ -294,10 +294,9 @@ class kMeansClustering:
         
         #get all centroid members
         centroid_members = [[] for i in range(len(centroids))]
-        for i in range(len(centroids)):
-            for j in range(len(centroid_assignments)):
-                owner = centroid_assignments[j]
-                centroid_members[owner].append(data[j])
+        for j in range(len(centroid_assignments)):
+            owner = centroid_assignments[j]
+            centroid_members[owner].append(data[j])
         for k in range(len(centroids)):
             centroid_members[k] = np.array(centroid_members[k])
 
@@ -358,7 +357,7 @@ if __name__ == '__main__':
         test = copy.deepcopy(tenFolds[0])
         training = np.concatenate(tenFolds[1:])
         d = len(headers)-1
-        kMC = kMeansClustering(kNeighbors=d,kValue=d, dataSet=training, data_type="real", categorical_features=[], regression_data_set=regression_data_set[data_set], alpha=1, beta=1, h=.5, d=d,name=name,Testdata = training)
+        kMC = kMeansClustering(kNeighbors=d,kValue=3, dataSet=training, data_type="real", categorical_features=[], regression_data_set=regression_data_set[data_set], alpha=1, beta=1, h=.5, d=d,name=name,Testdata = training)
         print(kMC.generate_cluster_centroids())
         print(kMC.classify())
         #print(kMC.dataSet)
