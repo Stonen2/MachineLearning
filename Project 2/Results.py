@@ -15,7 +15,7 @@ import numpy as np
 class Results: 
     
     def __init__(self):
-        print("Results Object Created")
+        pass
 
 
     """
@@ -87,14 +87,13 @@ class Results:
         #Try to access the file that we are trying to write too 
         try: 
             #Open the CSV file in append mode to be written to 
-            with open(filename ,mode = "a") as file: 
+            with open(filename + '.csv' ,mode = "a") as file: 
                 count = 0 
                 #For each of the data points stored in the metadata 
                 for i in MetaData: 
                     if count == len(MetaData): 
                         file.write(str(i))
                         continue 
-                    print(i)
                     #Write a given input into a row in the file 
                     file.write(str(i) + ',')
                     count += 1 

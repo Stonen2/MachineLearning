@@ -17,33 +17,33 @@ import kMedoidsClustering
 import time 
 
 categorical_attribute_indices = {
-    
-    "vote": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
-   
-    "fire": [0,1,2,3],
-    "machine": [0,1],
-    "abalone": [0]
+        "segmentation": [],
+        "vote": [0,1,2,3,4,5,6,7,8,9,10,11,12,13,14,15],
+        "glass": [],
+        "fire": [0,1,2,3],
+        "machine": [0,1],
+        "abalone": [0]
 }
 
 regression_data_set = {
-    
-    "vote": False,
-
-    "fire": True,
-    "machine": True,
-    "abalone": True
+   "segmentation": False,
+        "vote": False,
+        "glass": False,
+        "fire": True,
+        "machine": True,
+        "abalone": True
 }
 
 feature_data_types = {
-    
-    "vote": 'categorical',
-    
-    "fire": 'mixed',
-    "machine": 'mixed',
-    "abalone": 'mixed'
+  "segmentation": 'real',
+        "vote": 'categorical',
+        "glass": 'real',
+        "fire": 'mixed',
+        "machine": 'mixed',
+        "abalone": 'mixed'
 }
 
-data_sets = [ "vote",  "fire", "machine", "abalone"]
+data_sets = [ "vote", "fire"]
 
 def PlotCSV():
     pass
@@ -53,12 +53,10 @@ def main():
     #Print some data to the screen to let the user know we are starting the program 
     print("Program Start")
     k = 0 
-    for zz in range(30):
-         
-        #For ecah of the data set names that we have stored in a global variable 
-        for data_set in data_sets:
-            
-            #print(regression_data_set.get(key))
+            #For ecah of the data set names that we have stored in a global variable 
+    for data_set in data_sets:
+        OVerallPerformance = list() 
+        for zz in range(10):
             #Create a data utility to track some metadata about the class being Examined
             du = DataUtility.DataUtility(categorical_attribute_indices, regression_data_set)
             #Store off the following values in a particular order for tuning, and 10 fold cross validation 
@@ -66,24 +64,13 @@ def main():
                 headers, full_set, tuning_data, tenFolds = du.generate_experiment_data_Categorical(data_set)
             else:
                 headers, full_set, tuning_data, tenFolds = du.generate_experiment_data(data_set)
-
             # dimensionality of data set
             ds = len(headers) - 1
             #Print the data to the screen for the user to see 
-            print("headers: ", headers, "\n", "tuning data: \n",tuning_data)
             #Create and store a copy of the first dataframe of data 
-            test = copy.deepcopy(tenFolds[0])
+            test = copy.deepcopy(tenFolds[zz])
             #Append all data folds to the training data set
             training = np.concatenate(tenFolds[1:])
-            if k >= len(training)/2:
-                k = 0 
-            else: 
-                k +=1
-            #Print the length of the first array for debugging
-            #print(len(test[0]))
-            #Print the length of the training data set for testing 
-            #print(len(training))
-            #Create a KNN data object and insert the following data 
             knn = kNN.kNN(
                 #Feed in the square root of the length 
                 int(math.sqrt(len(full_set))), 
@@ -114,7 +101,9 @@ def main():
             MetaData.append("K Value: ")
             MetaData.append(k)
             #Create a list to store the Results that are generated above FOR TESTING 
-            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData)
+            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData,data_set)
+            OVerallPerformance.append(ResultSet[0])
+            OVerallPerformance.append(ResultSet[1])
             #Now test the dataset on Edited KNN 
             #Print the Results to a file 
             Eknn = EditedKNN.EditedKNN( 
@@ -144,8 +133,9 @@ def main():
             MetaData.append("K Value: ")
             MetaData.append(k)
             ResultSet = list() 
-            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData)
-            print("EDITED FINISHED") 
+            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData,data_set)
+            OVerallPerformance.append(ResultSet[0])
+            OVerallPerformance.append(ResultSet[1])
             #Now test the dataset on Condensed KNN 
             #Print the Results to a file 
             MetaData = list() 
@@ -175,32 +165,53 @@ def main():
             )
             classifications = Cknn.classify(training, test)
             ResultSet = list() 
-            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData)
-            MetaData = list() 
-            MetaData.append(data_set)
-            MetaData.append("TRIAL:")
-            MetaData.append("KMEANS CLUSTERING")
-            MetaData.append("K Value: ")
-            MetaData.append(k)
-            kmean = kMeansClustering.kMeansClustering(k,kValue=k, dataSet=training, data_type=feature_data_types[data_set], categorical_features=categorical_attribute_indices[data_set], regression_data_set=regression_data_set[data_set], alpha=1, beta=1, h=.5, d=ds,name=data_set,Testdata= test)
-
-            classifications = kmean.classify()
-            ResultSet = list() 
-            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData)
-            MetaData = list() 
-            MetaData.append(data_set)
-            MetaData.append("TRIAL:")
-            MetaData.append("KMEDOIDS CLUSTERING")
-            MetaData.append("K Value: ")
-            MetaData.append(k)
-            medoids = kMedoidsClustering.kMedoidsClustering(kNeighbors=k,kValue=k, dataSet=training, data_type=feature_data_types[data_set], categorical_features=categorical_attribute_indices[data_set], regression_data_set=regression_data_set[data_set], alpha=1, beta=1, h=.5, d=ds,Testdata= test)
-            classifications = medoids.classify()
-            ResultSet = list() 
-            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData)
+            ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData,data_set)    
+            OVerallPerformance.append(ResultSet[0])
+            OVerallPerformance.append(ResultSet[1])   
+        f1knn = 0 
+        zoknn = 0
+        zoeknn = 0 
+        f1eknn = 0 
+        zocknn = 0 
+        f1cknn = 0   
+        count = 1 
+        f = 0 
+        z = 1
+        a = 2 
+        b = 3 
+        c = 4 
+        d = 5 
 
 
-        
 
+        while(count < len(OVerallPerformance)):
+                f1knn += OVerallPerformance[f]
+                zoknn += OVerallPerformance[z]
+                f1eknn += OVerallPerformance[a]
+                zoeknn += OVerallPerformance[b]
+                f1cknn += OVerallPerformance[c]
+                zocknn += OVerallPerformance[d]
+
+                a += 6 
+                b += 6 
+                c += 6
+                d += 6 
+                f += 6 
+                z += 6 
+
+                count+=6 
+        print("OVERALL PERFORMANCE")
+        print("KNN: ")
+        print(f1knn/10)
+        print(zoknn/10)
+        print("Edited KNN: ")
+        print(f1eknn/10)
+        print(zoeknn/10)
+        print("Condensed KNN: ")
+        print(f1cknn/10)
+        print(zocknn/10)
+    
+    
     #Print some meta data to the screen letting the user know the program is ending 
     print("Program End")
 #On invocation run the main method
