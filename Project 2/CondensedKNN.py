@@ -52,8 +52,13 @@ class CondensedKNN:
                     Z = np.concatenate((Z, x), axis=0)
             # Same for classification, add to Z if not the same class
             else:
+                print(x_value)
+                print(nearest_neighbor_in_Z)
                 if x_value != nearest_neighbor_in_Z:
                     Z = np.concatenate((Z, x), axis=0)
+                    print(z)
+                    print("Data point added")
+                    s = input("")
         return Z
 
     # classify the test data against a condensed training set using KNN

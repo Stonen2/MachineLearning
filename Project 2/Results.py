@@ -87,7 +87,7 @@ class Results:
         #Try to access the file that we are trying to write too 
         try: 
             #Open the CSV file in append mode to be written to 
-            with open(filename ,mode = "a") as file: 
+            with open(filename + '.csv' ,mode = "a") as file: 
                 count = 0 
                 #For each of the data points stored in the metadata 
                 for i in MetaData: 

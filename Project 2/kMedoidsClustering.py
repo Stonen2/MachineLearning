@@ -136,10 +136,9 @@ class kMedoidsClustering:
                 #If the new distortion is less than the distortion calculated above 
                 if new_distortion < distortion:
                     #Store off a deep copy of the sample x that is the new medoid
-                    print("old medoid:", medoids[i])
-                    print("new medoid:", x)
+                 
                     medoids[i] = copy.deepcopy(x)
-            print("updating medoid for cluster", i)
+        
         return medoids
 
     def generate_cluster_medoids(self):
@@ -151,7 +150,7 @@ class kMedoidsClustering:
         updated_medoids = self.update_medoids(medoids, first_assignment, self.dataSet)
         #Set a count to be 0
         count = 0
-        print("count: ", count)
+        
         while True:
             #Set a second assignment and store the value 
             second_assignment = self.assign_all_points_to_closest_medoid(updated_medoids, self.dataSet)
@@ -169,7 +168,7 @@ class kMedoidsClustering:
                 if first_assignment[i] != second_assignment[i]:
                     #Store thevalue off 
                     changing_assignments.append(i)
-            print("medoid assignments that are changing", changing_assignments)
+            
             #If the first is equal to the second or we are beyond the iteration limit set 
             if first_assignment == second_assignment or count > self.itermax:
                 #Break 
@@ -186,6 +185,7 @@ class kMedoidsClustering:
 ####################################### UNIT TESTING #################################################
 
 if __name__ == '__main__':
+    
     print("program Start")
     categorical_attribute_indices = {
         "segmentation": [],
@@ -215,7 +215,6 @@ if __name__ == '__main__':
     }
 
     data_sets = ["segmentation", "vote", "glass", "fire", "machine", "abalone"]
-
     regression = [x for x in data_sets if regression_data_set[x]]
 
     for i in range(1):

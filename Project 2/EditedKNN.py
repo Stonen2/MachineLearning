@@ -48,12 +48,15 @@ class EditedKNN:
         while True:
             # remove all examples that were incorrectly estimated
             reduced_set = self.remove_incorrect_estimates(reduced_set, results)
-
+            print(reduced_set)
             # re-estimate data set and save results
             results = self.classify_in_place(reduced_set)
+            print(results)
             performance = self.evaluate_performance(results, self.regression_data_set)
+            print(performance)
             reduction_record.append([copy.deepcopy(reduced_set), copy.deepcopy(results), copy.copy(performance)])
-
+            print(reduction_record)
+            s = input("")
             # if the most recent knn performance is worse than the last one,
             # stop editing data set
             if reduction_record[-1][2] < reduction_record[-2][2] or len(reduction_record[-1][0]) == len(reduction_record[-2][0]):

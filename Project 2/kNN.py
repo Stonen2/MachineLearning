@@ -78,6 +78,7 @@ class kNN:
             elif self.data_type == "categorical":
                 #Use hamming distance to calculate distance 
                 distance = self.hd.Distance(x, new_sample)
+                s = input("")
             #Otherwise 
             else:
                 #Set a list of categorical values 
@@ -105,6 +106,8 @@ class kNN:
             new_vector = new_sample.tolist()[:-1]
             #Set the number of neighbors to the K neighbors function 
             neighbors = self.get_k_neighbors(exampleData, new_vector, self.k)
+            print(neighbors)
+            s = input("")
             # printNeighbors = [(f"Distance: {n[0]}", f"example: {n[1]}", exampleData[n[1]].tolist()) for n in neighbors]
             
             # # code just for printout:
@@ -126,6 +129,9 @@ class kNN:
             if self.regression_data_set:
                 #Use a guassian kernel to generate a kernel estimate 
                 estimate = self.kernel.estimate(neighbors)
+                print("Regression Estimation")
+                print(estimate)
+                s = input("")
                 # print("kernel estimate: ", estimate)
                 # print()\
             #If it is a categorical dataset 
@@ -152,6 +158,9 @@ class kNN:
                             break
                     #Set the estimate to the neighbor class 
                     estimate = neighbor_class
+                    print("Estimate")
+                    print(estimate)
+                    s = input("")
                     # print("Estimate: ", estimate, '\n')
             #Store off the ground truth value 
             ground_truth =  new_sample.tolist()[-1]

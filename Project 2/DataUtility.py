@@ -199,6 +199,12 @@ class DataUtility:
     def generate_experiment_data_Categorical(self, data_set: str)-> (list, np.ndarray, np.ndarray, list):
         # read in data set
         df = pd.read_csv(f"./NormalizedData/{data_set}.csv")
+        print("Data Frame, Raw data on file ")
+        print(df)
+        print(len(df))
+        s = input("")
+
+        
         # save the column labels
         headers = df.columns.values
         # extract data from dataset to tune parameters
@@ -207,6 +213,10 @@ class DataUtility:
         tuning_data = tuning_data.to_numpy()
         # split the remaining data into 10 chunks for 10fold cros validation
         tenFolds = self.StratifyTenFold(remainder)
+        for i in tenFolds: 
+            print(i)
+            print(len(i))
+        s = input("")
         # save the full set as numpy array
         full_set = remainder.to_numpy()
         # return the headers, full set, tuning, and 10fold data
