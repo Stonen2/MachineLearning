@@ -73,11 +73,15 @@ class kNN:
             #If the data is real 
             if self.data_type == "real":
                 #Calculate Real distance distance 
+                print("KERNEL DISTANCE ")
                 distance = self.rd.Distance(x, new_sample)
+                print(distance)
             #If the data is categorical 
             elif self.data_type == "categorical":
                 #Use hamming distance to calculate distance 
                 distance = self.hd.Distance(x, new_sample)
+                print("HAMMING DISTANCE: ")
+                print(distance)
                 s = input("")
             #Otherwise 
             else:

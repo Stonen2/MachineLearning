@@ -5,16 +5,18 @@ class HammingDistance:
         distance = 0
         for i in range(len(x1)):
             if x1[i] == x2[i]:
-                print(x1[i] == x2[i])
+              
                 
                 value = 0
-                print(value )
+              
             else:
-                print(x1[i] == x2[i])
-                value = 1
-                print(value)
                 
+                value = 1
+                
+
             distance += value
+        print("DISTANCE CALCULATED")
+        print(distance)
         return distance
 
 if __name__ == '__main__':

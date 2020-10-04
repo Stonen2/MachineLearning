@@ -24,6 +24,6 @@ class KernelSmoother:
         return numerator/denominator
 
     def gaussian_kernel(self, u) -> float:
-        print(1/(math.sqrt(2 * math.pi)))**(self.d) * math.exp(-.5 * (u**2))
+        print("1/(math.sqrt(2 * math.pi)))**(self.d) * math.exp(-.5 * (u**2)")
         s = input("")
         return (1/(math.sqrt(2 * math.pi)))**(self.d) * math.exp(-.5 * (u**2))

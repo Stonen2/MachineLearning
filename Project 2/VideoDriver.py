@@ -80,6 +80,8 @@ def main():
                 k = 0 
             else: 
                 k +=1
+            print("KNN")
+            print("+===============================================================+")
             #Create a KNN data object and insert the following data 
             knn = kNN.kNN(
                 #Feed in the square root of the length 
@@ -99,6 +101,8 @@ def main():
                 #Set the dimensionality of the data set in KNN
                 d=ds
             )
+            print("KNN CLASSIFICATION")
+            print("+===============================================================+")
             #Store and run the classification associated with the KNN algorithm 
             classifications = knn.classify(training, test)
             #Create a Results function to feed in the KNN Classification data and produce Loss Function Values 
@@ -116,7 +120,9 @@ def main():
             categoricalPerf.append(ResultSet[0])
             categoricalPerf.append(ResultSet[1])
             #Now test the dataset on Edited KNN 
-            #Print the Results to a file 
+            #Print the Results to a file
+            print("Edited KNN")
+            print("+===============================================================+") 
             Eknn = EditedKNN.EditedKNN( 
                 #Error
                 ResultSet[1], 
@@ -136,6 +142,8 @@ def main():
                 h=.5,
                 #Set the dimensionality of the data set in KNN
                 d=ds)
+            print("Edited KNN CLASSIFICATION ")
+            print("+===============================================================+")
             classifications = Eknn.classify(training, test)
             MetaData = list() 
             MetaData.append(data_set)
@@ -156,6 +164,8 @@ def main():
             MetaData.append("CONDENSED KNN")
             MetaData.append("K Value: ")
             MetaData.append(k)
+            print("CONDENSED KNN")
+            print("+===============================================================+")
             Cknn = CondensedKNN.CondensedKNN( 
                 ResultSet[1],
                 #Feed in the square root of the length 
@@ -175,6 +185,8 @@ def main():
                 #Set the dimensionality of the data set in KNN
                 d=ds
             )
+            print("CONDENSE KNN CLASSIFICATION ")
+            print("+===============================================================+")
             classifications = Cknn.classify(training, test)
             ResultSet = list() 
             ResultSet = ResultObject.StartLossFunction(regression_data_set.get(data_set),classifications, MetaData,data_set)
@@ -310,13 +322,6 @@ def main():
             print(ResultSet)
             RegressionPerf.append(ResultSet[0])
             RegressionPerf.append(ResultSet[1])
-
-
-
-
-
-
-
 
         f1 = 0 
         zo = 0  

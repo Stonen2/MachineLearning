@@ -56,7 +56,7 @@ class CondensedKNN:
                 print(nearest_neighbor_in_Z)
                 if x_value != nearest_neighbor_in_Z:
                     Z = np.concatenate((Z, x), axis=0)
-                    print(z)
+                    print(Z)
                     print("Data point added")
                     s = input("")
         return Z
