@@ -98,7 +98,16 @@ def main():
                 input_size = X.shape[0]
 
                 ############# hyperparameters ################
-                hidden_layers = [input_size]
+                if bb == 0: 
+                    hidden_layers[]
+                else if bb == 1: 
+                    hidden_layers = [input_size]
+                else: 
+                    hidden_layers = [input_size,input_size]
+                
+                # [] 0 Hidden Layers 
+                # [input_size] 1 Layer 
+                # [input_size, inpute_size ] 2 layers 
                 learning_rate = .01
                 momentum = 0
                 batch_size = 20
