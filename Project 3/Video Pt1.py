@@ -128,10 +128,11 @@ def main():
                     plt.draw()
                     plt.pause(0.00001)
                     plt.clf()
-
+            """
             plt.ioff()
             plt.plot(NN.error_x, NN.error_y)
             plt.show()
+            """
             print("\n Labels: \n",labels)
 
 
@@ -141,8 +142,6 @@ def main():
                 #Decode the One Hot encoding Value 
                 Estimation_Values = NN.PickLargest(Estimation_Values)
                 test_labels = NN.PickLargest(test_labels)
-                print("ESTiMATION VALUES BY GIVEN INDEX (CLASS GUESS) ")
-                print(Estimation_Values)
             else: 
                 Estimation_Values = Estimation_Values.tolist()
                 test_labels = test_labels.tolist() 
@@ -155,11 +154,15 @@ def main():
             Estimat = Estimation_Values
             groun = test_labels
             
+
+            """
             print("ESTIMATE IN LIST FORM")
             print(Estimat)
             print("\n")
             print("GROUND IN LIST FORM ")
             print(groun)
+            """
+
 
             Nice = Per.ConvertResultsDataStructure(groun, Estimat)
             print("THE GROUND VERSUS ESTIMATION:")
@@ -209,7 +212,7 @@ def main():
             #Epochs
             Meta.append(epochs)
             Per.StartLossFunction(regression,Nice,Meta)
-            time.sleep(1000000)
+            
 
 
     #Demonstrate the Gradient Calculation at the output for a Neural Network     
