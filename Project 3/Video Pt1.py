@@ -99,8 +99,8 @@ def main():
 
                 ############# hyperparameters ################
                 if bb == 0: 
-                    hidden_layers[]
-                else if bb == 1: 
+                    hidden_layers = []
+                elif bb == 1: 
                     hidden_layers = [input_size]
                 else: 
                     hidden_layers = [input_size,input_size]
