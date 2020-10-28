@@ -37,13 +37,15 @@ def batch_input_data(X: np.ndarray, labels: np.ndarray, batch_size: int) -> list
 
 
 #######################################################################################################################################
+#
 #Show a sample model for the smallest of each Neural network 0,1,2
 # Demonstrate and explain how an element is propagated through 2 hidden layers
 # Demonstrate weight updates occurring on a two-layer network
 #Demonstrate the gradient calculations at the output for any network
+#
 #######################################################################################################################################
 def main(): 
-    print("=================Video Part 1 STARTING=================")
+    print("=================Video Part 3 STARTING=================")
     
     #Show the sample model for smalled of NN types
     #Soybean dataset on a single layered {Display the Weights, and the Ground truth and Estimate}
@@ -86,9 +88,6 @@ def main():
                 #Store the remaining data set labels 
                 labels = np.concatenate(remaining_labels, axis=1)
                 #Test data print to the scren 
-                #print("data:", X.shape, '\n', X)
-                #print()
-                #print("labels:", labels.shape, '\n', labels)
                 regression = regression_data_set[data_set]
                 #If the data set is a regression dataset
                 if regression == True:
@@ -102,10 +101,6 @@ def main():
                     test_labels = du.ConvertLabels(test_labels, output_size)
                     #Get the Labels into a One hot encoding 
                     labels = du.ConvertLabels(labels, output_size)
-
-                #Print the labels meta data to the screen and the label data set 
-                #print("labels:", labels.shape, '\n', labels)
-                #print("Test labels:", test_labels.shape, '\n', test_labels)
                 input_size = X.shape[0]
 
                 ############# hyperparameters ################
@@ -124,14 +119,9 @@ def main():
                 batch_size = 20
                 epochs = 500
                 ##############################################
-
-
                 NN = NeuralNetwork.NeuralNetwork(
                     input_size, hidden_layers, regression, output_size, learning_rate, momentum
                 )
-                # print("shape x", X.shape)
-
-                # print(vars(NN))
                 print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ { data_set } $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n")
                 print("NUMBER OF HIDDEN LAYERS = " + str(bb))
                 plt.ion()
@@ -149,14 +139,6 @@ def main():
                         plt.draw()
                         plt.pause(0.00001)
                         plt.clf()
-                """
-                plt.ioff()
-                plt.plot(NN.error_x, NN.error_y)
-                plt.show()
-                """
-                #print("\n Labels: \n",labels)
-
-
                 
                 Estimation_Values = NN.classify(test_data,test_labels)
                 if regression == False: 
@@ -174,17 +156,7 @@ def main():
                 Per = Performance.Results()
                 Estimat = Estimation_Values
                 groun = test_labels
-                
-
-                """
-                print("ESTIMATE IN LIST FORM")
-                print(Estimat)
-                print("\n")
-                print("GROUND IN LIST FORM ")
-                print(groun)
-                """
-
-
+            
                 Nice = Per.ConvertResultsDataStructure(groun, Estimat)
                 print("THE GROUND VERSUS ESTIMATION:")
                 print(Nice)
@@ -234,19 +206,9 @@ def main():
                 #Epochs
                 Meta.append(epochs)
                 Per.StartLossFunction(regression,Nice,Meta)
-                break
-            
             
 
-
-    #Demonstrate the Gradient Calculation at the output for a Neural Network     
-    #Demonstrate Weight Updates occurring on a two-layer netwrok for each layer 
-
-
-    #Show how an example is propagates through a 2 hidden layer network 
-
-
-    print("==================Video Part 1 ENDING==================")
+    print("==================Video Part 3 ENDING==================")
 
 
 
