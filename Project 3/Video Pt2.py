@@ -56,7 +56,7 @@ def main():
     }
     for bb in range(3): 
         for data_set in data_sets:
-            if data_set == 'Cancer' or data_set == 'glass' or data_set == 'machine' or data_set == 'forestfires':
+            if data_set == 'Cancer' or data_set == 'glass' or data_set == 'machine' or data_set == 'forestfires' or data_set == 'abalone':
                 continue
 
             du = DataUtility.DataUtility(categorical_attribute_indices, regression_data_set)

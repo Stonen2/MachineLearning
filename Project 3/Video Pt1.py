@@ -223,6 +223,8 @@ def main():
                 #Epochs
                 Meta.append(epochs)
                 Per.StartLossFunction(regression,Nice,Meta)
+                break
+            
             
 
 
