@@ -31,6 +31,12 @@ def batch_input_data(X: np.ndarray, labels: np.ndarray, batch_size: int) -> list
     return batches
 
 
+
+
+#######################################################################################################################################
+#
+# Show the average performance over each of the ten folds for each of the nueral network types 0,1,2 hidden layers 
+#######################################################################################################################################
 def main(): 
     print("=================Video Part 1 STARTING=================")
     

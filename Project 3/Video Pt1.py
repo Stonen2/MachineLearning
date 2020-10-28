@@ -31,6 +31,12 @@ def batch_input_data(X: np.ndarray, labels: np.ndarray, batch_size: int) -> list
     return batches
 
 
+
+
+#######################################################################################################################################
+#
+# Show a single example of each neural network for a single given data set BUllet Point 1
+#######################################################################################################################################
 def main(): 
     print("=================Video Part 1 STARTING=================")
     
