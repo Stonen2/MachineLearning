@@ -106,7 +106,7 @@ for data_set in data_sets:
         hidden_layers = [input_size]
         learning_rate = .01
         momentum = 0
-        batch_size = 20
+        batch_size = 40
         epochs = 500
         ##############################################
 

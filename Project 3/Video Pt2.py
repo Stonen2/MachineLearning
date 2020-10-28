@@ -62,7 +62,7 @@ def main():
     }
     for bb in range(3): 
         for data_set in data_sets:
-            if data_set == 'Cancer' or data_set == 'glass' or data_set == 'machine' or data_set == 'forestfires' or data_set == 'abalone':
+            if data_set == 'abalone' or data_set == 'glass' or data_set == 'machine' or data_set == 'forestfires' or data_set == 'soybean':
                 continue
 
             du = DataUtility.DataUtility(categorical_attribute_indices, regression_data_set)
@@ -102,7 +102,9 @@ def main():
                 #print("labels:", labels.shape, '\n', labels)
                 #print("Test labels:", test_labels.shape, '\n', test_labels)
                 input_size = X.shape[0]
-
+                print("INPUT SIZE")
+                print(input_size)
+                print("======================")
                 ############# hyperparameters ################
                 if bb == 0: 
                     hidden_layers = []
@@ -114,11 +116,11 @@ def main():
                 # [] 0 Hidden Layers 
                 # [input_size] 1 Layer 
                 # [input_size, inpute_size ] 2 layers 
-                learning_rate = .01
+                learning_rate = .0001
                 momentum = 0
-                batch_size = 20
+                batch_size = 40
                 #400 for abalone
-                epochs = 500
+                epochs = 1000
                 ##############################################
 
 

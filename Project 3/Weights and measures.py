@@ -1,3 +1,7 @@
+# Demonstrate and explain how an element is propagated through 2 hidden layers
+# Demonstrate weight updates occurring on a two-layer network
+#Demonstrate the gradient calculations at the output for any network
+#
 import numpy as np
 import pandas as pd
 import math, random, copy

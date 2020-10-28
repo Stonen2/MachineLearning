@@ -36,6 +36,7 @@ def batch_input_data(X: np.ndarray, labels: np.ndarray, batch_size: int) -> list
 #######################################################################################################################################
 #
 # Show a single example of each neural network for a single given data set BUllet Point 1
+# SHow the gradient caluclation at the output 
 #######################################################################################################################################
 def main(): 
     print("=================Video Part 1 STARTING=================")
@@ -154,9 +155,12 @@ def main():
 
                 
                 Estimation_Values = NN.classify(test_data,test_labels)
+                print("OUTPUT CALCULATION VALUES ")
+                print(Estimation_Values)
                 if regression == False: 
                     #Decode the One Hot encoding Value 
                     Estimation_Values = NN.PickLargest(Estimation_Values)
+                    print("OUTPUT CALCULATION ESTIMATES ")
                     test_labels = NN.PickLargest(test_labels)
                 else: 
                     Estimation_Values = Estimation_Values.tolist()
