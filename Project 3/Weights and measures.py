@@ -123,6 +123,7 @@ def main():
                 NN = NeuralNetwork.NeuralNetwork(
                     input_size, hidden_layers, regression, output_size, learning_rate, momentum
                 )
+                NN.Setprint()
                 print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ { data_set } $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n")
                 print("NUMBER OF HIDDEN LAYERS = " + str(bb))
                 plt.ion()

@@ -23,6 +23,7 @@ class NeuralNetwork:
         :param regression: bool. Is this network estimating a regression output?
         :param output_size: int. Number of output nodes (1 for regression, otherwise 1 for each class)
         """ 
+        self.print = False
         self.input_size = input_size
         self.hidden_layers = hidden_layers
         self.regression = regression
@@ -50,9 +51,11 @@ class NeuralNetwork:
         self.error_x = []
         self.pass_count = 0
         
+        
 
     ################# INITIALIZATION HELPERS ###################################
-
+    def Setprint(self): 
+        self.print = True
     def generate_weight_matrices(self):
         # initialize weights randomly, close to 0
         # generate the matrices that hold the input weights for each layer. Maybe return a list of matrices?
@@ -69,6 +72,9 @@ class NeuralNetwork:
                 layer_inputs = counts[i-1]
                 weights.append(np.random.randn(layer_nodes, layer_inputs) * 1/layer_inputs) # or * 0.01
         self.initial_weights = weights
+        if self.print == True: 
+            print("GENERATED WEIGHT MATRIX")
+            print(weights)
         return weights
 
     def generate_bias_matrices(self):
@@ -85,6 +91,9 @@ class NeuralNetwork:
                 # layer designated by order of append (position in biases list)
                 layer_nodes = counts[i]
                 biases.append(0)
+        if self.print == True: 
+            print("GENERATED BIAS")
+            print(biases)
         return biases
 
     def set_input_data(self, X: np.ndarray, labels: np.ndarray) -> None:
@@ -111,6 +120,9 @@ class NeuralNetwork:
         :param z: weighted sum of layer, to be passed through sigmoid fn
         Return: matrix 
         '''
+        if self.print == True: 
+            print("ACTIVATION FUNCTION ")
+            print(1 / (1 + np.exp(-z)))
         return 1 / (1 + np.exp(-z))
 
 
@@ -171,6 +183,9 @@ class NeuralNetwork:
         Return: None
         """
         Z = np.dot(W, X) + b
+        if self.print == True: 
+            print("CALCUALTING THE NET INPUT")
+            print(Z)
         return Z
 
     def calculate_sigmoid_activation(self, W: np.ndarray, X: np.ndarray, b: np.ndarray) -> None:
@@ -182,6 +197,9 @@ class NeuralNetwork:
         """
         Z = self.calculate_net_input(W, X, b)
         A = self.sigmoid(Z)
+        if self.print == True: 
+            print("CALCULATE SIGMOID ACTIVATION ")
+            print(A)
         return A
 
 
@@ -343,7 +361,9 @@ class NeuralNetwork:
         # otherwise update bias
         else:
             self.biases[i] -= delta_i * self.learning_rate
-
+        if self.print == True: 
+            print("UPDATED BIAS")
+            print(delta_i)
         self.old_bias_derivatives[i] = delta_i
 
     def update_weights(self, i: int) -> None:
@@ -369,7 +389,9 @@ class NeuralNetwork:
         else:
             # adjust the weights as the old values minus the derivative times the learning rate
             self.weights[i] -= self.learning_rate * dWeights
-
+        if self.print == True: 
+            print("UPDATE WEIGHTS")
+            print(dWeights)
         self.old_weight_derivatives[i] = dWeights
 
     ##################### CLASSIFICATION #######################################

@@ -64,8 +64,8 @@ def main():
         "machine": [],
         "abalone": []
     }
-    for bb in range(3): 
-        for data_set in data_sets:
+   
+    for data_set in data_sets:
             if data_set != 'soybean':
                 continue
 
@@ -101,12 +101,8 @@ def main():
                 input_size = X.shape[0]
 
                 ############# hyperparameters ################
-                if bb == 0: 
-                    hidden_layers = []
-                elif bb == 1: 
-                    hidden_layers = [input_size]
-                else: 
-                    hidden_layers = [input_size,input_size]
+            
+                hidden_layers = [input_size,input_size]
                 
                 # [] 0 Hidden Layers 
                 # [input_size] 1 Layer 
@@ -119,8 +115,9 @@ def main():
                 NN = NeuralNetwork.NeuralNetwork(
                     input_size, hidden_layers, regression, output_size, learning_rate, momentum
                 )
+                NN.Setprint()
                 print(f"$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$ { data_set } $$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$\n")
-                print("NUMBER OF HIDDEN LAYERS = " + str(bb))
+                print("NUMBER OF HIDDEN LAYERS = " + "2")
                 plt.ion()
                 batches = batch_input_data(X, labels, batch_size)
                 for i in range(epochs):
@@ -131,17 +128,21 @@ def main():
                         NN.set_input_data(X_i, labels_i)
                         NN.forward_pass()
                         NN.backpropagation_pass()
+                    """
                     if i % 100 == 0:
                         plt.plot(NN.error_x, NN.error_y)
                         plt.draw()
                         plt.pause(0.00001)
                         plt.clf()
-                
+                    """
                 Estimation_Values = NN.classify(test_data,test_labels)
+
                 if regression == False: 
                     #Decode the One Hot encoding Value 
                     Estimation_Values = NN.PickLargest(Estimation_Values)
                     test_labels = NN.PickLargest(test_labels)
+                
+                
                 else: 
                     Estimation_Values = Estimation_Values.tolist()
                     test_labels = test_labels.tolist() 
@@ -203,7 +204,7 @@ def main():
                 #Epochs
                 Meta.append(epochs)
                 Per.StartLossFunction(regression,Nice,Meta)
-            
+                break
 
     print("==================Video Part 3 ENDING==================")
 

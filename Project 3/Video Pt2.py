@@ -38,7 +38,7 @@ def batch_input_data(X: np.ndarray, labels: np.ndarray, batch_size: int) -> list
 # Show the average performance over each of the ten folds for each of the nueral network types 0,1,2 hidden layers 
 #######################################################################################################################################
 def main(): 
-    print("=================Video Part 1 STARTING=================")
+    print("=================Video Part 2 STARTING=================")
     
     #Show the sample model for smalled of NN types
     #Soybean dataset on a single layered {Display the Weights, and the Ground truth and Estimate}
@@ -62,7 +62,7 @@ def main():
     }
     for bb in range(3): 
         for data_set in data_sets:
-            if data_set == 'abalone' or data_set == 'glass' or data_set == 'machine' or data_set == 'forestfires' or data_set == 'soybean':
+            if data_set == 'abalone' or data_set == 'glass' or data_set == 'machine' or data_set == 'forestfires' or data_set == 'Cancer':
                 continue
 
             du = DataUtility.DataUtility(categorical_attribute_indices, regression_data_set)
@@ -142,11 +142,13 @@ def main():
                         NN.set_input_data(X_i, labels_i)
                         NN.forward_pass()
                         NN.backpropagation_pass()
+                    """
                     if i % 100 == 0:
                         plt.plot(NN.error_x, NN.error_y)
                         plt.draw()
                         plt.pause(0.00001)
                         plt.clf()
+                    """
                 """
                 plt.ioff()
                 plt.plot(NN.error_x, NN.error_y)
@@ -242,7 +244,7 @@ def main():
     #Show how an example is propagates through a 2 hidden layer network 
 
 
-    print("==================Video Part 1 ENDING==================")
+    print("==================Video Part 2 ENDING==================")
 
 
 
